@@ -17,6 +17,11 @@ def start_message(message):
 def start_message(message):
   bot.send_message(message.chat.id,"Команды:\n/rules - Правила чата.")
 
+@bot.message_handler(commands=['infoc'])
+def chatInfo(message):
+  bot.send_message(message.chat.id,"Айди чата "+str(message.chat.id)\n)
+
+
 @bot.message_handler(commands=['rules'])
 def rules(message):
   bot.send_message(message.chat.id,6408)
