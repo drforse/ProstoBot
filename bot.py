@@ -11,15 +11,15 @@ bot=telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
-  bot.send_message(message.chat.id,"Привет! Подробно в /help"):
+  bot.send_message(message.chat.id,"Привет! Подробно в /help")
 
 @bot.message_handler(commands=['help'])
 def start_message(message):
-  bot.send_message(message.chat.id,"Команды:\n/rules - Правила чата."):
+  bot.send_message(message.chat.id,"Команды:\n/rules - Правила чата.")
 
 @bot.message_handler(commands=['rules'])
 def rules(message):
-  bot.forward_message(message.chat.id,6408):
+  bot.forward_message(message.chat.id,6408)
 
 
 
