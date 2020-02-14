@@ -19,7 +19,7 @@ def start_message(message):
 
 @bot.message_handler(commands=['rules'])
 def rules(message):
-  bot.forward_message(message.chat.id,6408)
+  bot.send_message(message.chat.id,6408)
 
 
 
