@@ -21,6 +21,9 @@ def start_message(message):
 def chatInfo(message):
   bot.send_message(message.chat.id,"Айди чата: "+str(message.chat.id))
 
+@bot.message_handler(commands=['infom'])
+def chatInfo(message):
+  bot.send_message(message.chat.id,"Айди сообщения: "+str(message.message.id))
 
 @bot.message_handler(commands=['rules'])
 def rules(message):
