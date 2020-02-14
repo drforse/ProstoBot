@@ -19,7 +19,7 @@ def start_message(message):
 
 @bot.message_handler(commands=['infoc'])
 def chatInfo(message):
-  bot.send_message(message.chat.id,"Айди чата "+str(message.chat.id)\n)
+  bot.send_message(message.chat.id,"Айди чата "+str(message.chat.id))
 
 
 @bot.message_handler(commands=['rules'])
