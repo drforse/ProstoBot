@@ -7,6 +7,7 @@ client = MongoClient(os.environ["MongoDB"])
 db = client.main
 rulesColl = db.rules
 adminsColl=db.admins
+ruletkaColl=db.ruletka
 
 
 admins2=adminsColl.find_one({"ID": 2552})
@@ -58,7 +59,11 @@ def newrules(message):
 												
 @bot.message_handler(commands=['create_ruletka'])
 def createRuleka(message):
-	bot.send_message(message.chat.id,F"Айди чата: {message.chat.id}")
+	ruletkaChat=ruletkaColl.find_one({"chatid": message.chat.id})
+	if ruletkaChat != None:
+		newRuletka = { "chatid": message.chat.id}
+		ruletkaColl.insert_one(newRuletka)				
+
 
 
 ''''
