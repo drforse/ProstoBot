@@ -68,7 +68,10 @@ def createRuleka(message):
 
 @bot.message_handler(commands=['remove_ruletka'])
 def removeRuletka(message):
-  bot.send_message(message.chat.id,F"Айди чата: {message.chat.id}")
+	ruletkaChat=ruletkaColl.find_one({"chatid": message.chat.id})
+	if ruletkaChat!=None:
+		removeruletka = ruletkaColl.coll.remove({"chatid":message.chat.id})
+		bot.send_message(message.chat.id,"Рулетка удалена.")
 
 ''''
 @bot.message_handler(commands=['gay'])
