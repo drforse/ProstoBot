@@ -5,7 +5,8 @@ import os
 
 client = MongoClient(os.environ["MongoDB"])
 db = client.main
-coll = db.rules
+rulesColl = db.rules
+adminsColl=db.admins
 
 bot=telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
@@ -19,7 +20,12 @@ def start_message(message):
 
 @bot.message_handler(commands=['infoc'])
 def chatInfo(message):
-  bot.send_message(message.chat.id,"Айди чата: "+str(message.chat.id))
+  bot.send_message(message.chat.id,F"Айди чата: {message.chat.id}")
+
+@bot.message_handler(commands=['infou'])
+def userInfo(message):
+	if message.reply_to_message!=None:
+		bot.send_message(message.chat.id,"Айди учатника: "+str(message.reply_to_message.from_user.id))
 
 @bot.message_handler(commands=['infom'])
 def chatInfo(message):
