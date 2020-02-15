@@ -60,9 +60,11 @@ def newrules(message):
 @bot.message_handler(commands=['create_ruletka'])
 def createRuleka(message):
 	ruletkaChat=ruletkaColl.find_one({"chatid": message.chat.id})
-	if ruletkaChat != None:
+	if ruletkaChat == None:
 		newRuletka = { "chatid": message.chat.id}
-		ruletkaColl.insert_one(newRuletka)				
+		ruletkaColl.insert_one(newRuletka)	
+	else:
+		bot.send_message(message.chat.if,"В этом чате уже создана рулетка!")
 
 
 
