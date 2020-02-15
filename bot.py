@@ -2,6 +2,7 @@ import telebot
 from telebot import types
 from pymongo import MongoClient
 import os
+import uuid
 
 client = MongoClient(os.environ["MongoDB"])
 db = client.main
@@ -9,6 +10,7 @@ rulesColl = db.rules
 adminsColl=db.admins
 ruletkaColl=db.ruletka
 
+uuidID = uuid.uuid1() 
 
 admins2=adminsColl.find_one({"ID": 2552})
 
@@ -59,7 +61,7 @@ def newrules(message):
 												
 @bot.message_handler(commands=['create_ruletka'])
 def createRuleka(message):
-	ruletkaChat=ruletkaColl.find_one({"chatid": message.chat.id})
+	ruletkaChat=ruletkaColl.find_one({"chatid": message.chat.id,"ctrl":0})
 	if ruletkaChat == None:
 		newRuletka = { "chatid": message.chat.id}
 		ruletkaColl.insert_one(newRuletka)	
@@ -70,9 +72,27 @@ def createRuleka(message):
 def removeRuletka(message):
 	ruletkaChat=ruletkaColl.find_one({"chatid": message.chat.id})
 	if ruletkaChat!=None:
-		removeruletka = ruletkaColl.coll.remove({"chatid":message.chat.id})
+		removeruletka = ruletkaColl.remove({"chatid":message.chat.id})
 		bot.send_message(message.chat.id,"Рулетка удалена.")
-
+	else:
+		bot.send_message(message.chat.id,"Рулетка еще не была создана!")
+							
+@bot.message_handler(commands=['addruletka'])
+def addRuletka(message):
+	addruletka = message.text.split(' ')[1]
+	if message.text.split(' ')==[1]:
+		ruletkaChat=ruletkaColl.find_one({"chatid": message.chat.id})	
+		for ids in ruletkaChat['users']:
+			if x['users'][ids]['name'] != addruletka:
+				ruletkaColl.update_one({"chatid":message.chat.id }, {'$set':{repr(uuidID.bytes): addruletka}})
+				bot.send_message(message.chat.id,"Значение успешно добавлено в рулетку!")
+			else:
+				bot.send_message(message.chat.id,"Такое значение уже существует в рулетке!")
+							
+							
+	else:
+		bot.send_message(message.chat.id,"/addruletka Значение(имя,кличка и т.д.)")
+		    
 ''''
 @bot.message_handler(commands=['gay'])
 def start_message(message):
