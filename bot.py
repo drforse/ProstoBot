@@ -8,9 +8,8 @@ db = client.main
 rulesColl = db.rules
 adminsColl=db.admins
 
-tequila=adminsColl.find_one({"rules": {'$exists': True}})
-atikd=adminsColl.find_one({"rules": {'$exists': True}})
 
+admins2=adminsColl.find_one({"ID": 2552})
 
 bot=telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
@@ -46,7 +45,7 @@ def rules(message):
 @bot.message_handler(commands=['newrules'])
 def newrules(message):
 	if message.reply_to_message!=None:
-		if message.from_user.id==f"{tequila['Tequila']}" or f"{atikd['AtikD']}":
+		if message.from_user.id==f"{admins2['Tequila']}" or f"{admins2['AtikD']}":
 			deleterules = rulesColl.delete_many ({})
 			newrules = { "rules": message.reply_to_message.message_id,"chatid":message.chat.id}
 			rulesColl.insert_one(newrules)
