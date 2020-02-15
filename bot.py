@@ -5,7 +5,7 @@ import os
 
 client = MongoClient(os.environ["MongoDB"])
 db = client.main
-coll = db.prikol
+coll = db.rules
 
 bot=telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
@@ -31,7 +31,11 @@ def rules(message):
 	if message.chat.id==-1001317298639:
 		bot.forward_message(message.chat.id,-1001317298639,215)
 
-
+@bot.message_handler(commands=['newrules'])
+def rules(message):
+	if message.reply_to_message!=None:
+		if message.chat.id==-1001317298639:
+			pass
 
 
 
