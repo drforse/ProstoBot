@@ -35,13 +35,14 @@ def chatInfo(message):
 @bot.message_handler(commands=['rules'])
 def rules(message):
 	if message.chat.id==-1001317298639:
-		rules=rulesColl.find_one({"rules": {'$exists': True}})
-		bot.forward_message(message.chat.id,message.chat.id,f"{rules}")
+		rulesid=rulesColl.find_one({"rules": {'$exists': True}})
+		rulesChatId=rulesColl.find_one({"chatid": {'$exists': True}})
+		bot.forward_message(message.chat.id,f"{rulesChatId}",f"{rulesid}")
 
 @bot.message_handler(commands=['newrules'])
 def newrules(message):
 	if message.reply_to_message!=None:
-			newrules = { "rules": message.reply_to_message.message_id}
+			newrules = { "rules": message.reply_to_message.message_id,"chatid":message.chat.id}
 			rulesColl.insert_one(newrules)
 
 
