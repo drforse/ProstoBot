@@ -25,12 +25,12 @@ def chatInfo(message):
 @bot.message_handler(commands=['infou'])
 def userInfo(message):
 	if message.reply_to_message!=None:
-		bot.send_message(message.chat.id,"Айди учатника: "+str(message.reply_to_message.from_user.id))
+		bot.send_message(message.chat.id,f"Айди учатника: {message.reply_to_message.from_user.id}")
 
 @bot.message_handler(commands=['infom'])
 def chatInfo(message):
 	if message.reply_to_message!=None:
-		bot.send_message(message.chat.id,"Айди сообщения: "+str(message.reply_to_message.message_id))
+		bot.send_message(message.chat.id,f"Айди сообщения: {message.reply_to_message.message_id}")
 	
 @bot.message_handler(commands=['rules'])
 def rules(message):
