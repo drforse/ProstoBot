@@ -64,9 +64,11 @@ def createRuleka(message):
 		newRuletka = { "chatid": message.chat.id}
 		ruletkaColl.insert_one(newRuletka)	
 	else:
-		bot.send_message(message.chat.if,"В этом чате уже создана рулетка!")
+		bot.send_message(message.chat.id,"В этом чате уже создана рулетка!")
 
-
+@bot.message_handler(commands=['remove_ruletka'])
+def removeRuletka(message):
+  bot.send_message(message.chat.id,F"Айди чата: {message.chat.id}")
 
 ''''
 @bot.message_handler(commands=['gay'])
