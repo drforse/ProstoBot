@@ -18,12 +18,13 @@ def start_message(message):
   bot.send_message(message.chat.id,"Привет! Подробно в /help")
 
 @bot.message_handler(commands=['help'])
-def start_message(message):
+def help_message(message):
   bot.send_message(message.chat.id,"Команды:\n/rules - Правила чата.\n/adminshelp - Команды для админов.")
 
 @bot.message_handler(commands=['adminshelp'])
-def start_message(message):
-  bot.send_message(message.chat.id,"Команды для админов:\n/newrules - Новые правила чата(отвечать на чье-либо сообщение).")
+def admins_command(message):
+	if message.from_user.id==f"{admins2['Tequila']}" or f"{admins2['AtikD']}":
+		bot.send_message(message.chat.id,"Команды для админов:\n/newrules - Новые правила чата(отвечать на чье-либо сообщение).")
 
 @bot.message_handler(commands=['infoc'])
 def chatInfo(message):
@@ -35,7 +36,7 @@ def userInfo(message):
 		bot.send_message(message.chat.id,f"Айди учатника: {message.reply_to_message.from_user.id}")
 
 @bot.message_handler(commands=['infom'])
-def chatInfo(message):
+def messageInfo(message):
 	if message.reply_to_message!=None:
 		bot.send_message(message.chat.id,f"Айди сообщения: {message.reply_to_message.message_id}")
 	
