@@ -49,6 +49,7 @@ def newrules(message):
 			deleterules = rulesColl.delete_many ({})
 			newrules = { "rules": message.reply_to_message.message_id,"chatid":message.chat.id}
 			rulesColl.insert_one(newrules)
+			bot.send_message(message.chat.id,"Правила установлены!")	    
 
 
 
