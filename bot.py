@@ -42,7 +42,7 @@ def rules(message):
 def newrules(message):
 	if message.reply_to_message!=None:
 			newrules = { "rules": message.reply_to_message.message_id}
-			rulesColl.insert_one(reg)
+			rulesColl.insert_one(newrules)
 
 
 
