@@ -43,6 +43,7 @@ def rules(message):
 	if message.reply_to_message!=None:
 		if message.chat.id==-1001317298639:
 			newrules = { "rules": message.reply_to_message.message_id}
+			coll.insert_one(reg)
 
 
 
