@@ -19,7 +19,11 @@ def start_message(message):
 
 @bot.message_handler(commands=['help'])
 def start_message(message):
-  bot.send_message(message.chat.id,"Команды:\n/rules - Правила чата.")
+  bot.send_message(message.chat.id,"Команды:\n/rules - Правила чата.\n/adminshelp - Команды для админов.")
+
+@bot.message_handler(commands=['adminshelp'])
+def start_message(message):
+  bot.send_message(message.chat.id,"Команды для админов:\n/newrules - Новые правила чата(отвечать на чье-либо сообщение).")
 
 @bot.message_handler(commands=['infoc'])
 def chatInfo(message):
