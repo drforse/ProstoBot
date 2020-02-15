@@ -24,7 +24,7 @@ def chatInfo(message):
 @bot.message_handler(commands=['infom'])
 def chatInfo(message):
 	if message.reply_to_message!=None:
-		bot.send_message(message.chat.id,"Айди сообщения: "+str(message.message.id))
+		bot.send_message(message.chat.id,"Айди сообщения: "+str(message.reply_to_message.id))
 	
 @bot.message_handler(commands=['rules'])
 def rules(message):
