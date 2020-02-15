@@ -29,7 +29,7 @@ def chatInfo(message):
 @bot.message_handler(commands=['rules'])
 def rules(message):
 	if message.chat.id==-1001317298639:
-		bot.forward_message(message.chat.id,1001317298639,215)
+		bot.forward_message(message.chat.id,-1001317298639,215)
 
 
 
