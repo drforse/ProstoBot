@@ -42,8 +42,9 @@ def rules(message):
 @bot.message_handler(commands=['newrules'])
 def newrules(message):
 	if message.reply_to_message!=None:
-			newrules = { "rules": message.reply_to_message.message_id,"chatid":message.chat.id}
-			rulesColl.insert_one(newrules)
+		deleterules = rulesColl.delete_many ({})
+		newrules = { "rules": message.reply_to_message.message_id,"chatid":message.chat.id}
+		rulesColl.insert_one(newrules)
 
 
 
