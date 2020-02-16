@@ -65,6 +65,7 @@ def createRuleka(message):
 	if ruletkaChat == None:
 		newRuletka = { "chatid": message.chat.id}
 		ruletkaColl.insert_one(newRuletka)	
+		bot.send_message(message.chat.id,"Рулетка успешно создана!")
 	else:
 		bot.send_message(message.chat.id,"В этом чате уже создана рулетка!")
 
