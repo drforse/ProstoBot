@@ -34,15 +34,20 @@ def chatInfo(message):
   bot.send_message(message.chat.id,F"Айди чата: {message.chat.id}")
 
 @bot.message_handler(commands=['pin'])
-def chatInfo(message):
+def PinMessage(message):
 	if message.reply_to_message!=None:
-		if status==admin:
+		if user.status != 'creator' and user.status != 'administrator'
 			bot.pin_chat_message(message.chat.id,message.reply_to_message.message_id)
 			bot.send_message(message.chat.id,"Успешно выполнено!")
 		else:
 			bot.send_message(message.chat.id,"Вы не администратор!")
 	else:
 		bot.send_message(message.chat.id,"Ответьте на сообщение.")
+		
+@bot.message_handler(commands=['unpin'])
+def unPinMessage(message):
+	if user.status != 'creator' and user.status != 'administrator'
+		bot.send_message(message.chat.id,"Успешно выполнено!")
 
 @bot.message_handler(commands=['infou'])
 def userInfo(message):
