@@ -54,7 +54,7 @@ def userInfo(message):
 	if message.reply_to_message!=None:
 		bot.send_message(message.chat.id,f"Айди учатника: {message.reply_to_message.from_user.id}")
 	else:
-		bot.send_message(message.chat.id,f"Ваш айди: {message.from_user.id}"
+		bot.send_message(message.chat.id,f"Ваш айди: {message.from_user.id}")
 
 @bot.message_handler(commands=['infom'])
 def messageInfo(message):
