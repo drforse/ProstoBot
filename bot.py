@@ -33,10 +33,23 @@ def admins_command(message):
 def chatInfo(message):
   bot.send_message(message.chat.id,F"Айди чата: {message.chat.id}")
 
+@bot.message_handler(commands=['pin'])
+def chatInfo(message):
+	if message.reply_to_message!=None:
+		if status==admin:
+			bot.pin_chat_message(message.chat.id,message.reply_to_message.message_id)
+			bot.send_message(message.chat.id,"Успешно выполнено!")
+		else:
+			bot.send_message(message.chat.id,"Вы не администратор!")
+	else:
+		bot.send_message(message.chat.id,"Ответьте на сообщение.")
+
 @bot.message_handler(commands=['infou'])
 def userInfo(message):
 	if message.reply_to_message!=None:
 		bot.send_message(message.chat.id,f"Айди учатника: {message.reply_to_message.from_user.id}")
+	else:
+		bot.send_message(message.chat.id,f"Ваш айди: {message.from_user.id}"
 
 @bot.message_handler(commands=['infom'])
 def messageInfo(message):
