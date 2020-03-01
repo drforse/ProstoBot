@@ -26,7 +26,7 @@ def help_message(message):
 
 @bot.message_handler(commands=['adminshelp'])
 def admins_command(message):
-	if message.from_user.id==f"{admins2['Tequila']}" or f"{admins2['AtikD']}":
+	if message.from_user.id==f"{admins2['Tequila']}" or message.from_user.id==f"{admins2['AtikD']}":
 		bot.send_message(message.chat.id,"Команды для админов:\n/newrules - Новые правила чата(отвечать на чье-либо сообщение).")
 
 @bot.message_handler(commands=['infoc'])
@@ -71,7 +71,7 @@ def rules(message):
 @bot.message_handler(commands=['newrules'])
 def newrules(message):
 	if message.reply_to_message!=None:
-		if message.from_user.id==f"{admins2['Tequila']}" or f"{admins2['AtikD']}":
+		if message.from_user.id==f"{admins2['Tequila']}" or message.from_user.id==f"{admins2['AtikD']}":
 			deleterules = rulesColl.delete_many ({})
 			newrules = { "rules": message.reply_to_message.message_id,"chatid":message.chat.id}
 			rulesColl.insert_one(newrules)
