@@ -29,6 +29,8 @@ def admins_command(message):
 	user = bot.get_chat_member(message.chat.id, message.from_user.id)
 	if user.status == 'creator' or user.status == 'administrator':
 		bot.send_message(message.chat.id,"Команды для админов:\n/newrules - Новые правила чата(отвечать на чье-либо сообщение).")
+	else:
+		bot.send_message(message.chat.id,"Вы не администратор чата!")
 
 @bot.message_handler(commands=['infoc'])
 def chatInfo(message):
