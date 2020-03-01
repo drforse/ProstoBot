@@ -84,7 +84,9 @@ def newrules(message):
 			deleterules = rulesColl.delete_many ({})
 			newrules = { "rules": message.reply_to_message.message_id,"chatid":message.chat.id}
 			rulesColl.insert_one(newrules)
-			bot.send_message(message.chat.id,"Правила установлены!")	    
+			bot.send_message(message.chat.id,"Правила установлены!")	
+		else:
+			bot.send_message(message.chat.id,"Вы не администратор чата!")
 												
 @bot.message_handler(commands=['create_ruletka'])
 def createRuleka(message):
