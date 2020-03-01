@@ -46,7 +46,7 @@ def PinMessage(message):
 		
 @bot.message_handler(commands=['unpin'])
 def unPinMessage(message):
-	if user.status != 'creator' and user.status != 'administrator':
+	if message.from_user.status != 'creator' and message.from_user.status != 'administrator':
 		bot.send_message(message.chat.id,"Успешно выполнено!")
 
 @bot.message_handler(commands=['infou'])
