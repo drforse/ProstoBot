@@ -26,7 +26,8 @@ def help_message(message):
 
 @bot.message_handler(commands=['adminshelp'])
 def admins_command(message):
-	if message.from_user.id==f"{admins2['Tequila']}" or message.from_user.id==f"{admins2['AtikD']}":
+	user = bot.get_chat_member(message.chat.id, message.from_user.id)
+	if user.status == 'creator' or user.status == 'administrator':
 		bot.send_message(message.chat.id,"Команды для админов:\n/newrules - Новые правила чата(отвечать на чье-либо сообщение).")
 
 @bot.message_handler(commands=['infoc'])
@@ -36,7 +37,8 @@ def chatInfo(message):
 @bot.message_handler(commands=['pin'])
 def PinMessage(message):
 	if message.reply_to_message!=None:
-		if message.from_user.status == 'creator' and message.from_user.status == 'administrator':
+		user = bot.get_chat_member(message.chat.id, message.from_user.id)
+		if user.status == 'creator' or user.status == 'administrator':
 			bot.pin_chat_message(message.chat.id,message.reply_to_message.message_id)
 			bot.send_message(message.chat.id,"Успешно выполнено!")
 		else:
@@ -46,7 +48,8 @@ def PinMessage(message):
 		
 @bot.message_handler(commands=['unpin'])
 def unPinMessage(message):
-	if message.from_user.status != 'creator' and message.from_user.status != 'administrator':
+	user = bot.get_chat_member(message.chat.id, message.from_user.id)
+	if user.status != 'creator' and user.status != 'administrator':
 		bot.send_message(message.chat.id,"Успешно выполнено!")
 
 @bot.message_handler(commands=['infou'])
@@ -71,7 +74,8 @@ def rules(message):
 @bot.message_handler(commands=['newrules'])
 def newrules(message):
 	if message.reply_to_message!=None:
-		if message.from_user.id==f"{admins2['Tequila']}" or message.from_user.id==f"{admins2['AtikD']}":
+		user = bot.get_chat_member(message.chat.id, message.from_user.id)										
+		if user.status == 'creator' or user.status == 'administrator':
 			deleterules = rulesColl.delete_many ({})
 			newrules = { "rules": message.reply_to_message.message_id,"chatid":message.chat.id}
 			rulesColl.insert_one(newrules)
