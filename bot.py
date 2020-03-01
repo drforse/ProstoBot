@@ -87,7 +87,7 @@ def newrules(message):
 			bot.send_message(message.chat.id,"Правила установлены!")	
 		else:
 			bot.send_message(message.chat.id,"Вы не администратор чата!")
-												
+'''											
 @bot.message_handler(commands=['create_ruletka'])
 def createRuleka(message):
 	ruletkaChat=ruletkaColl.find_one({"chatid": message.chat.id,"ctrl":0})
@@ -121,9 +121,8 @@ def addRuletka(message):
 							
 							
 	else:
-		bot.send_message(message.chat.id,"/addruletka Значение(имя,кличка и т.д.)")
-		    
-''''
+		bot.send_message(message.chat.id,"/addruletka Значение(имя,кличка и т.д.)"
+
 @bot.message_handler(commands=['gay'])
 def start_message(message):
   bot.send_message("Гей чата будет "###):
