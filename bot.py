@@ -36,7 +36,7 @@ def chatInfo(message):
 @bot.message_handler(commands=['pin'])
 def PinMessage(message):
 	if message.reply_to_message!=None:
-		if user.status != 'creator' and user.status != 'administrator':
+		if message.from_user.status != 'creator' and message.from_user.status != 'administrator':
 			bot.pin_chat_message(message.chat.id,message.reply_to_message.message_id)
 			bot.send_message(message.chat.id,"Успешно выполнено!")
 		else:
