@@ -40,7 +40,7 @@ def chatInfo(message):
 @bot.message_handler(commands=['randomnumber'])
 def randomNumber(message):
 	randn=random.randint(0,100)
-  bot.send_message(message.chat.id,F"{randn}")
+	bot.send_message(message.chat.id,F"{randn}")
 
 @bot.message_handler(commands=['pin'])
 def PinMessage(message):
