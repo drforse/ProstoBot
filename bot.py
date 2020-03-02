@@ -3,6 +3,7 @@ from telebot import types
 from pymongo import MongoClient
 import os
 import uuid
+import random
 
 client = MongoClient(os.environ["MongoDB"])
 db = client.main
@@ -35,6 +36,11 @@ def admins_command(message):
 @bot.message_handler(commands=['infoc'])
 def chatInfo(message):
   bot.send_message(message.chat.id,F"Айди чата: {message.chat.id}")
+
+@bot.message_handler(commands=['randomnumber'])
+def randomNumber(message):
+	randn=random.randint(0,100)
+  bot.send_message(message.chat.id,F"{randn}")
 
 @bot.message_handler(commands=['pin'])
 def PinMessage(message):
