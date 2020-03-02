@@ -39,14 +39,14 @@ def chatInfo(message):
 
 @bot.message_handler(commands=['randomnumber'])
 def randomNumber(message):
+	num1=message.text.split(' ')[1]
 	if message.text.split(' ')==[1]:
+		num2=message.text.split(' ')[2]
 		if message.text.split(' ')==[2]:
-			num1=message.text.split(' ')[1]
-			num2=message.text.split(' ')[2]
 			randn=random.randint(num1,num2)
 			bot.send_message(message.chat.id,F"{randn}")
 		else:
-			bot.send_message(message.chat.id,F"/randomnumber {число1} {число2}")
+			bot.send_message(message.chat.id,"/randomnumber {число1} {число2}")
 	else:	
 		randn=random.randint(0,100)
 		bot.send_message(message.chat.id,F"{randn}")
