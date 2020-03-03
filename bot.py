@@ -39,17 +39,15 @@ def chatInfo(message):
 
 @bot.message_handler(commands=['randomnumber'])
 def randomNumber(message):
-	if message.text.split(' ')==[1]:	
-		if message.text.split(' ')==[2]:
-			num1=message.text.split(' ')[1]
-			num2=message.text.split(' ')[2]
-			randn1=random.randint(num1,num2)
-			bot.send_message(message.chat.id,F"{randn1}")
-		else:
-			bot.send_message(message.chat.id,"/randomnumber {число1} {число2}")
-	else:	
-		randn2=random.randint(0,100)
-		bot.send_message(message.chat.id,F"{randn2}")
+	if len(message.text.split()) == 2:
+		bot.send_message(message.chat.id,"/randomnumber {число1} {число2}")
+		return
+ 	if len(message.text.split()) == 1:
+		randn=random.randint(0,100)
+ 	else:
+ 		args = message.split()[1:]
+		randn=random.randint(args[0], args[1])
+	bot.send_message(message.chat.id, randn)
 
 @bot.message_handler(commands=['pin'])
 def PinMessage(message):
